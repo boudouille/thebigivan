@@ -1,0 +1,45 @@
+#show_project_create
+{
+    cursor: pointer;
+}
+
+#project_create
+{
+    display: none;
+}
+
+
+/*MINIATURE PROJECT */
+
+.mini_project
+{
+    background: rgba(255,255,255,0.8);
+    padding-left: 10px;
+    margin-rigth: 10px;
+    margin-left: 10px;
+    padding-right: 10px;
+    border: 1px #bbbfc3 solid;
+    text-align: center;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.mini_project:hover
+{
+    opacity: 0.6;
+}
+
+.mini_project_info
+{
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+.mini_project_description
+{
+    font-size: 0.8em;
+    height: 150px;
+    text-align: justify;
+    overflow: auto;
+}
