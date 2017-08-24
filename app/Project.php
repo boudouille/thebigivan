@@ -2,8 +2,7 @@
 
 namespace App;
 
-use User;
-
+use App\Collaborator;
 use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
@@ -15,8 +14,9 @@ class Project extends Model
        return $this->belongsTo('App\User', 'user_id','id');
     }
 
+
     public function collaborators()
     {
-        return $this->belongsToMany('App\User','collaborators','project_id','user_id');
+        return $this->hasMany(Collaborator::class);
     }
 }

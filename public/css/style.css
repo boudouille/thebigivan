@@ -23,11 +23,17 @@
     border-radius: 3px;
     margin-bottom: 20px;
     cursor: pointer;
+
+    opacity: 1;
+    transition: opacity 0.7s;
+    -webkit-transition: opacity 0.7s;
 }
 
 .mini_project:hover
 {
     opacity: 0.6;
+    transition: opacity 0.7s;
+    -webkit-transition: opacity 0.7s;
 }
 
 .mini_project_info
@@ -39,7 +45,7 @@
 .mini_project_description
 {
     font-size: 0.8em;
-    height: 150px;
+    height: 120px;
     text-align: justify;
     overflow: auto;
 }

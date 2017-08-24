@@ -16,12 +16,11 @@ class CreateCollaboratorsTable extends Migration
         Schema::create('collaborators', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('project_id');
-            $table->integer('user_id');
+            $table->string('email');
             $table->timestamps();
 
-            $table->unique('project_id','user_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('project_id')->references('id')->on('projects');
+            $table->unique(array('project_id','email'));
+//            $table->foreign('project_id')->references('id')->on('projects');
         });
     }
 

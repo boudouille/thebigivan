@@ -5,7 +5,25 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-lg-4">
+                <div class="panel">
+                    <div class="panel-heading">
+                        Collaborators
+                    </div>
+                    <div class="panel-body">
+                        {{--{{dd($collaborators)}}--}}
+                        @foreach($collaborators as $col)
+                            <p>
+                                {{$col->email}}
+                                @if($col->name)
+                                    - {{$col->name}}
+                                @endif
+                            </p>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
                 <div class="panel">
                     <div class="panel-heading">
                         <h2>{{$project->name}}</h2>
