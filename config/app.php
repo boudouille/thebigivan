@@ -181,6 +181,9 @@ return [
         //FORM
         Collective\Html\HtmlServiceProvider::class,
 
+        //UNIQUE_WITH
+        Felixkiss\UniqueWithValidator\ServiceProvider::class,
+
     ],
 
     /*

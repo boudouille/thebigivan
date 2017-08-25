@@ -49,3 +49,23 @@
     text-align: justify;
     overflow: auto;
 }
+
+
+/* SHOW project */
+
+.delete_col_project
+{
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+#form_add_collaborator
+{
+    width: 100%;
+}
+
+#div_add_collaborator
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
