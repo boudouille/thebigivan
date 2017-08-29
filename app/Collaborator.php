@@ -13,6 +13,16 @@ class Collaborator extends Model
         return $this->hasMany(Project::class);
     }
 
+    public function scopeAdmins($query)
+    {
+        return $query->where('admin', true);
+    }
+
+    public function scopeMembers($query)
+    {
+        return $query->where('admin', 0);
+    }
+
     public function user()
     {
 //        return User::where('email','=',$this->email)->first();

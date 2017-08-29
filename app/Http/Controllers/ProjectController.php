@@ -68,11 +68,25 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         $creator = $project->creator()->first();
+
+        $myId = Auth::id();
+
+        if ($creator->id == $myId) {
+            $admin = 1;
+        } else {
+            $admin = Collaborator::where('project_id', $project->id)
+                ->where('email', Auth::user()->email)->first()->admin;
+        }
+
+        $sites = $project->sites()->with('creator')->orderBy('sites.updated_at','desc')->get();
+
+//        dd($sites);
+
         $collaborators = $project->collaborators()->with('user')->get();
+        $admins = $project->collaborators()->with('user')->where('admin',1)->get();
+        $members = $project->collaborators()->with('user')->where('admin',0)->get();
 
-//        dd($collaborators);
-
-        return view('projects.show', compact('project', 'collaborators', 'creator'));
+        return view('projects.show', compact('project', 'collaborators', 'creator','myId','admin','admins','members','sites'));
     }
 
     /**

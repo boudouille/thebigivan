@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-{{--{{dd($creator)}}--}}
+{{--{{dd($sites)}}--}}
 
 @section('content')
     <div class="container">
@@ -9,43 +9,38 @@
                 <div class="panel">
                     <div class="panel-heading">
                         <div>Collaborators</div>
-                        <div id="div_add_collaborator">
-                            <form action="/thebigivan/public/collaborators/store" method="post"
-                                  id="form_add_collaborator">
-                                {{csrf_field()}}
-                                <input type="hidden" name="project_id" value="{{$project->id}}"/>
-                                <div class="input-group">
-                                    <input type="email" name="email" class="form-control"
-                                           placeholder="Add a collaborator email">
-                                    <span class="input-group-btn">
+                        @if($admin == 1)
+                            <div id="div_add_collaborator">
+                                <form action="{{route('collaborators.store')}}" method="post"
+                                      id="form_add_collaborator">
+                                    {{csrf_field()}}
+                                    <input type="hidden" name="project_id" value="{{$project->id}}"/>
+                                    <div class="input-group">
+                                        <input type="email" name="email" class="form-control"
+                                               placeholder="Add a collaborator email">
+                                        <span class="input-group-btn">
                                         <button class="btn btn-secondary" type="submit">Add</button>
                                     </span>
-                                </div>
-                            </form>
-                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        @endif
                     </div>
                     <div class="panel-body">
-                        <p style="font-weight: bold;"><a target="_blank"
-                                                         href="users/{{$creator->id}}">{{$creator->email}}
-                                - {{$creator->name}}</a></p>
-                        @foreach($collaborators as $collaborator)
-                            <div class="row">
-                                <div class="col-lg-10">
-                                    @if(isset($collaborator->user->name))
-                                        <a target="_blank"
-                                           href="users/{{$collaborator->user->id}}">{{$collaborator->user->email}}
-                                            - {{$collaborator->user->name}}</a>
-                                    @else
-                                        {{$collaborator->email}}
-                                    @endif
-                                </div>
-                                <div class="col-lg-2">
-                                    <i onclick="deleteUserProject()" class="fa fa-times delete_col_project"
-                                       val="{{$collaborator->email}}"
-                                       title="Delete {{$collaborator->email}} from the project" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        @endforeach
+                        <p style="font-weight: bold; font-size: 1.1em;">
+                            <a target="_blank" href="users/{{$creator->id}}">
+                                {{$creator->email}} - {{$creator->name}}
+                            </a>
+                        </p>
+
+                        @include('collaborators.show',['collaborators'=>$admins,'collab_admin'=>1])
+
+                        @if(count($members) > 0)
+                            <hr>
+                        @endif
+
+                        @include('collaborators.show',['collaborators'=>$members,'collab_admin'=>0])
+
                     </div>
                 </div>
             </div>
@@ -65,6 +60,11 @@
                         </div>
                     </div>
                     <div class="panel-body">
+                        @include('projects.sites.sites_show',['sites'=>$sites])
+
+                        @if($admin)
+                            @include('projects.sites.site_create',['project'=>$project])
+                        @endif
 
                     </div>
 
@@ -75,9 +75,14 @@
     </div>
 
     <script>
-        function deleteUserProject() {
-            console.log('ahha');
-        }
+        $('document').ready(function () {
+            $('.delete_col_project').on('click', function () {
+
+                if (!confirm('Are you sure that you want to delete ' + $(this).attr('name') + ' from the project ?')) {
+                    return false;
+                }
+            });
+        });
     </script>
 
 

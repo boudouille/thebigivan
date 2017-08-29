@@ -8,11 +8,17 @@ use Illuminate\Http\Request;
 
 class CollaboratorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('collabnotuser', ['only' => ['store']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         //
@@ -34,10 +40,12 @@ class CollaboratorController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
+
+
     public function store(CollaboratorRequest $request)
     {
-        Collaborator::create($request->all());
 
+        Collaborator::create($request->all());
         return redirect('/projects/' . request('project_id'));
     }
 
@@ -73,7 +81,13 @@ class CollaboratorController extends Controller
     public function update(Request $request, Collaborator $collaborator)
     {
         //
+        $collaborator->admin = !$collaborator->admin;
+        $collaborator->update();
+
+        return back();
     }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -83,6 +97,8 @@ class CollaboratorController extends Controller
      */
     public function destroy(Collaborator $collaborator)
     {
-        //
+        $collaborator->delete();
+        return back();
+//        var_dump(request()->all());
     }
 }

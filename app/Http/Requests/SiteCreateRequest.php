@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CollaboratorRequest extends FormRequest
+class SiteCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,16 +25,8 @@ class CollaboratorRequest extends FormRequest
     {
         return [
             //
-            'email' => 'required|email|unique_with:collaborators,project_id',
-            'project_id' => 'required|numeric'
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            //
-            'email.unique_with' => 'This email already exists in this project.'
+            'name' => 'required|unique_with:sites,project_id|min:2',
+            'description' => 'required'
         ];
     }
 }

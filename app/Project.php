@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Collaborator;
 use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
@@ -14,9 +13,13 @@ class Project extends Model
        return $this->belongsTo('App\User', 'user_id','id');
     }
 
+    public function sites()
+    {
+        return $this->hasMany('App\Site', 'project_id', 'id');
+    }
 
     public function collaborators()
     {
-        return $this->hasMany(Collaborator::class);
+        return $this->hasMany(Collaborator::class)->orderBy('admin','desc');
     }
 }

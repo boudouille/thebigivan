@@ -21,4 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('projects','ProjectController');
 
-Route::post('collaborators/store','CollaboratorController@store');
+Route::resource('collaborators','CollaboratorController');
+
+Route::resource('sites','SiteController');

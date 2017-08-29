@@ -35,9 +35,7 @@
                 <p class="mini_project_info">By : {{$project->creator->name}}</p>
                 <p class="mini_project_info">At : {{date('d/m/Y',strtotime($project->created_at))}}</p>
                 <p class="mini_project_description">{{$project->description}}</p>
-                {{--                {{dd($project->collaborators())}}--}}
-                <p class="mini_project_info">{{count($project->collaborators())." ".str_plural('collaborator',count($project->collaborators()->get()))}} </p>
-                {{--<p class="mini_project_info">{{count($project->collaborators)}} collaborator(s)</p>--}}
+                <p class="mini_project_info">{{count($project->collaborators()->get())." ".str_plural('collaborator',count($project->collaborators()->get()))}} </p>
             </div>
 
         @endforeach

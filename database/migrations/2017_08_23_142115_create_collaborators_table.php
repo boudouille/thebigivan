@@ -17,10 +17,10 @@ class CreateCollaboratorsTable extends Migration
             $table->increments('id');
             $table->integer('project_id');
             $table->string('email');
+            $table->boolean('admin')->default(false);
             $table->timestamps();
 
-            $table->unique(array('project_id','email'));
-//            $table->foreign('project_id')->references('id')->on('projects');
+            $table->unique(['project_id','email']);
         });
     }
 
