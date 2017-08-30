@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SiteCreateRequest;
-use App\Site;
-use App\Access;
-use App\AccessType;
+use App\CollaboratorAccess;
 use Illuminate\Http\Request;
 
-class SiteController extends Controller
+class CollaboratorAccessController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +15,6 @@ class SiteController extends Controller
     public function index()
     {
         //
-
     }
 
     /**
@@ -37,35 +33,29 @@ class SiteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SiteCreateRequest $request)
+    public function store(Request $request)
     {
         //
-        auth()->user()->sites()->create($request->all());
-
-        return back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Site  $site
+     * @param  \App\CollaboratorAccess  $collaboratorAccess
      * @return \Illuminate\Http\Response
      */
-    public function show(Site $site)
+    public function show(CollaboratorAccess $collaboratorAccess)
     {
-        $accesses = Access::where('site_id',$site->id)
-            ->with('collaboratorAccesses.collaborator','accessType.accessFields','accessValues')->get();
-
-        return view('sites.index',compact('site','accesses'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Site  $site
+     * @param  \App\CollaboratorAccess  $collaboratorAccess
      * @return \Illuminate\Http\Response
      */
-    public function edit(Site $site)
+    public function edit(CollaboratorAccess $collaboratorAccess)
     {
         //
     }
@@ -74,10 +64,10 @@ class SiteController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Site  $site
+     * @param  \App\CollaboratorAccess  $collaboratorAccess
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Site $site)
+    public function update(Request $request, CollaboratorAccess $collaboratorAccess)
     {
         //
     }
@@ -85,13 +75,11 @@ class SiteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Site  $site
+     * @param  \App\CollaboratorAccess  $collaboratorAccess
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Site $site)
+    public function destroy(CollaboratorAccess $collaboratorAccess)
     {
         //
-        $site->delete();
-        return back();
     }
 }

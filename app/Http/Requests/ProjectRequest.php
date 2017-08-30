@@ -23,8 +23,9 @@ class ProjectRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
-            'name' => 'required|unique:projects|min:2',
+            'name' => 'required|unique:projects,id,'.$this->segment(2).'|min:2',
             'description' => 'required',
         ];
     }

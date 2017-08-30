@@ -20,7 +20,7 @@
             {{--Upgrade or downgrade the member / admin--}}
             @if($collab_admin)
                 <div class="col-lg-1">
-                    {{  Form::open(array('url' => 'collaborators/'.$collaborator->id, 'method' => 'put', 'id' => 'downgrade_'.$collaborator->id)) }}
+                    {{  Form::open(array('url' => 'collaborators/'.$collaborator->id, 'method' => 'put')) }}
                     {{ csrf_field() }}
 
                     {{ Form::hidden('collaborator_id', $collaborator->id,
@@ -37,7 +37,7 @@
                 </div>
             @else
                 <div class="col-lg-1">
-                    {{  Form::open(array('url' => 'collaborators/'.$collaborator->id, 'method' => 'put', 'id' => 'upgrade_'.$collaborator->id)) }}
+                    {{  Form::open(array('url' => 'collaborators/'.$collaborator->id, 'method' => 'put')) }}
                     {{ csrf_field() }}
 
                     {{ Form::hidden('collaborator_id', $collaborator->id,
@@ -58,7 +58,7 @@
             {{--Delete the user--}}
 
             <div class="col-lg-1">
-                {{  Form::open(array('url' => 'collaborators/'.$collaborator->id, 'method' => 'delete', 'id' => 'delete_'.$collaborator->id)) }}
+                {{  Form::open(array('url' => 'collaborators/'.$collaborator->id, 'method' => 'delete')) }}
                 {{ csrf_field() }}
 
                 {{ Form::hidden('collaborator_id', $collaborator->id,

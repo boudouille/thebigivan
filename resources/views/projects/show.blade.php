@@ -47,25 +47,57 @@
             <div class="col-md-8">
                 <div class="panel">
                     <div class="panel-heading">
-                        <div><a href="/thebigivan/public/projects"><i class="fa fa-caret-square-o-left"
-                                                                      aria-hidden="true"></i> Return on the projects
-                                page</a></div>
-                        <h2>{{$project->name}}</h2>
+                        <div style="overflow: auto;">
+                            <span style="float: left;">
+                                <a href="{{route('projects.index')}}">
+                                    <i class="fa fa-caret-square-o-left" aria-hidden="true"></i> Return on the projects page
+                                </a>
+                            </span>
+                            <span id="update_project">
+                                <i class="fa fa-cog" aria-hidden="true" id="modify_project"
+                                   title="Modify project informations"></i>
+                            </span>
+                        </div>
+
+                        {{ Form::open(array('url'=>'projects/'.$project->id,'method'=>'put')) }}
+                        {{ csrf_field() }}
+
+                        {{ Form::text('name',$project->name,array(
+                            'required'=>'required',
+                            'readonly'=>'readonly',
+                            'id'=>'project_update_name',
+                            'class' => 'project_update_input'
+                        )) }}
+                        {{--<h2>{{$project->name}}</h2>--}}
+
                         <div>
                             Created at {{date('d/m/Y',strtotime($project->created_at))}} by {{$creator->name}}
                         </div>
                         <hr>
-                        <div style="text-align: justify; font-size: 0.9em;">
-                            {{$project->description}}
+
+                        {{ Form::textarea('description',$project->description,array(
+                            'required' => 'required',
+                            'readonly' => 'readonly',
+                            'id' => 'project_update_description',
+                            'class' => 'project_update_input'
+                        )) }}
+
+                        <div align="center">
+                            <button type="submit" class="btn btn-success" id="project_update_submit">
+                                <i class="fa fa-check" aria-hidden="true"></i> Validate changes
+                            </button>
                         </div>
+
+
+                        {{ Form::close() }}
                     </div>
                     <div class="panel-body">
-                        @include('projects.sites.sites_show',['sites'=>$sites])
 
                         @if($admin)
                             @include('projects.sites.site_create',['project'=>$project])
                         @endif
 
+                        @include('projects.sites.sites_show',['sites'=>$sites])
                     </div>
 
                 </div>
@@ -81,6 +113,55 @@
                 if (!confirm('Are you sure that you want to delete ' + $(this).attr('name') + ' from the project ?')) {
                     return false;
                 }
+            });
+
+            var modify_project = 0;
+            var name_project = $('#project_update_name').val();
+            var description_project = $('#project_update_description').val();
+
+            $('#modify_project').click(function () {
+                if (modify_project == 0) {
+                    $('#project_update_name').removeAttr('readonly');
+                    $('#project_update_description').removeAttr('readonly');
+                    $('#project_update_name').css('borderBottom', '1px green solid');
+                    $('#project_update_description').css('border', '1px green solid');
+
+                    modify_project = 1;
+                }
+                else {
+                    $('#project_update_name').attr('readonly', 'readonly');
+                    $('#project_update_description').attr('readonly', 'readonly');
+                    $('#project_update_name').css('borderBottom', '0');
+                    $('#project_update_description').css('border', '0');
+
+                    modify_project = 0;
+                }
+            });
+
+
+            /// Verify if data change to show the update button
+
+            function verifChange(previousname, newname, previousdescription, newdescription) {
+                if (newname == previousname && newdescription == previousdescription) {
+                    $('#project_update_submit').hide()
+                }
+                else {
+                    $('#project_update_submit').show();
+                }
+            }
+
+            $('.project_update_input').on('keypress', function () {
+                var name_project_new = $('#project_update_name').val();
+                var description_project_new = $('#project_update_description').val();
+
+                verifChange(name_project, name_project_new, description_project, description_project_new)
+            });
+
+            $('.project_update_input').on('keyup', function () {
+                var name_project_new = $('#project_update_name').val();
+                var description_project_new = $('#project_update_description').val();
+
+                verifChange(name_project, name_project_new, description_project, description_project_new)
             });
         });
     </script>

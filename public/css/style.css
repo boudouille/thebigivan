@@ -53,7 +53,7 @@
 
 /* SHOW project */
 
-.delete_col_project, .upgrade_col_project, .downgrade_col_project
+.delete_col_project, .upgrade_col_project, .downgrade_col_project, .site_mini_close button
 {
     font-size: 1.2em;
     cursor: pointer;
@@ -64,6 +64,12 @@
     position: relative;
     vertical-align: middle;
 }
+
+.delete_col_project:hover, .upgrade_col_project:hover, .downgrade_col_project:hover, .site_mini_close button:hover
+{
+    color: #3097D1;
+}
+
 
 #form_add_collaborator
 {
@@ -76,11 +82,46 @@
     margin-bottom: 10px;
 }
 
+#update_project
+{
+    float: right;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+#update_project:hover
+{
+    color: #3097D1;
+}
+
+#project_update_name
+{
+    font-size: 30px;
+    border: 0;
+    outline: none;
+    margin-bottom: 5px;
+    background: none;
+}
+
+#project_update_description
+{
+    width: 100%;
+    resize: none;
+    padding: 5px;
+    text-align: justify;
+    border: 0;
+    outline: none;
+}
+
+#project_update_submit
+{
+    display: none;
+}
+
 /* Project - site side */
 
 #sites_list .list-group-item
 {
-    cursor:pointer;
     opacity: 0.7;
     transition: opacity 0.7s;
     -webkit-transition: opacity 0.7s;
@@ -88,20 +129,10 @@
 
 #sites_list .list-group-item:hover
 {
-    cursor:pointer;
     opacity: 1;
     transition: opacity 0.7s;
     -webkit-transition: opacity 0.7s;
 }
 
-#sites_list .list-group-item:hover .site_description
-{
-    display: block;
-}
-
-#sites_list .list-group-item .site_description
-{
-    display: none;
-}
 
 

@@ -107,9 +107,15 @@ class ProjectController extends Controller
      * @param  \App\Project $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(ProjectRequest $request, Project $project)
     {
         //
+        $project->name = request('name');
+        $project->description = request('description');
+
+        $project->update();
+
+        return back();
     }
 
     /**
