@@ -22,9 +22,4 @@ class Access extends Model
     {
         return $this->belongsTo('App\AccessType','access_type_id','id');
     }
-
-    public function accessValues()
-    {
-        return $this->hasMany('App\AccessValue','id','access_id');
-    }
 }

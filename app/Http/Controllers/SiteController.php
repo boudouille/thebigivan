@@ -54,7 +54,9 @@ class SiteController extends Controller
     public function show(Site $site)
     {
         $accesses = Access::where('site_id',$site->id)
-            ->with('collaboratorAccesses.collaborator','accessType.accessFields','accessValues')->get();
+            ->with('collaboratorAccesses.collaborator','accessType.accessFields.accessValue')->get()->toArray();
+
+        dd($accesses);
 
         return view('sites.index',compact('site','accesses'));
     }
