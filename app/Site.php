@@ -18,4 +18,9 @@ class Site extends Model
     {
         return $this->belongsTo('App\User','user_id', 'id');
     }
+
+    public function mysqlAccesses()
+    {
+        return $this->hasMany('App\Mysql','site_id','id')->oldest();
+    }
 }

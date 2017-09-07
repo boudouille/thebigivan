@@ -30,7 +30,7 @@ class AccessFieldController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,18 +41,30 @@ class AccessFieldController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\AccessField  $accessField
+     * @param  \App\AccessField $accessField
      * @return \Illuminate\Http\Response
      */
     public function show(AccessField $accessField)
     {
-        //
+        $typeId = request('access_type_id');
+        $typeName = request('access_type_name');
+        $site = request('site');
+        $connectionRoute = $this->accessRouteTest($typeName.'_test');
+
+        $accessFields = AccessField::where('access_type_id',$typeId)->orderBy('id','asc')->get();
+
+        return view('accesses.fields', compact('typeId', 'typeName', 'accessFields','connectionRoute','site'));
+    }
+
+    public function accessRouteTest($access)
+    {
+        return route($access);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\AccessField  $accessField
+     * @param  \App\AccessField $accessField
      * @return \Illuminate\Http\Response
      */
     public function edit(AccessField $accessField)
@@ -63,8 +75,8 @@ class AccessFieldController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\AccessField  $accessField
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\AccessField $accessField
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, AccessField $accessField)
@@ -75,11 +87,13 @@ class AccessFieldController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\AccessField  $accessField
+     * @param  \App\AccessField $accessField
      * @return \Illuminate\Http\Response
      */
     public function destroy(AccessField $accessField)
     {
         //
     }
+
+
 }

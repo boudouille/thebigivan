@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SiteCreateRequest;
+use App\Http\Requests\SiteUpdateRequest;
 use App\Site;
-use App\Access;
 use App\AccessType;
 use Illuminate\Http\Request;
 
@@ -53,12 +53,13 @@ class SiteController extends Controller
      */
     public function show(Site $site)
     {
-        $accesses = Access::where('site_id',$site->id)
-            ->with('collaboratorAccesses.collaborator','accessType.accessFields.accessValue')->get()->toArray();
+        $accessTypes = AccessType::with('accessFields')->get();
 
-        dd($accesses);
+        $site = $site->with('mysqlAccesses.mysqlScripts')->first();
 
-        return view('sites.index',compact('site','accesses'));
+//        dd($site);
+
+        return view('sites.index',compact('site','accessTypes'));
     }
 
     /**
@@ -79,9 +80,14 @@ class SiteController extends Controller
      * @param  \App\Site  $site
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Site $site)
+    public function update(SiteUpdateRequest $request, Site $site)
     {
         //
+        $site->name = request('name');
+        $site->description = request('description');
+
+        $site->update();
+        return back();
     }
 
     /**

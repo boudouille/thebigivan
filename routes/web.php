@@ -24,3 +24,13 @@ Route::resource('projects','ProjectController');
 Route::resource('collaborators','CollaboratorController');
 
 Route::resource('sites','SiteController');
+
+Route::post('ajaxSelectFields','AccessFieldController@show')->name('ajaxSelectFields');
+
+
+//Different access types test connection
+Route::post('mysql_test','MysqlController@testConnection')->name('mysql_test');
+
+
+//Different type of connection
+Route::resource('mysql','MysqlController');

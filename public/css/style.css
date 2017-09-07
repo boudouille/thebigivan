@@ -63,6 +63,7 @@
     margin: 0;
     position: relative;
     vertical-align: middle;
+    outline: none;
 }
 
 .delete_col_project:hover, .upgrade_col_project:hover, .downgrade_col_project:hover, .site_mini_close button:hover
@@ -134,5 +135,158 @@
     -webkit-transition: opacity 0.7s;
 }
 
+/*** SITE ***/
+
+#site_header
+{
+    background-color: white;
+    padding-top: 10px;
+}
+
+#site_description
+{
+    padding: 10px;
+    text-align: justify;
+}
 
 
+#bloc_modify_site
+{
+    position: relative;
+    text-align: center;
+}
+
+#modify_site
+{
+    position: absolute;
+    top: 50%; /* poussé de la moitié de hauteur du référent */
+    transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
+    font-size: 1.4em;
+    cursor: pointer;
+    background: none;
+    border: 0;
+}
+
+#modify_site:hover
+{
+    color: #3097D1;
+}
+
+#site_update_name
+{
+    margin-top: 10px;
+    font-size: 30px;
+    border: 0;
+    outline: none;
+    margin-bottom: 5px;
+    background: none;
+}
+
+#site_update_description
+{
+    width: 100%;
+    height: auto;
+    resize: none;
+    text-align: justify;
+    padding: 5px;
+    border: 0;
+    outline: none;
+}
+
+#back_to_project
+{
+    margin: 0 0 35px 15px;
+}
+
+/*** Accesses ****/
+
+#add_access_bloc
+{
+    padding-bottom: 10px;
+}
+
+#show_add_access
+{
+    cursor: pointer;
+}
+
+.access_title
+{
+    font-weight: bold;
+}
+
+#existing_accesses_bloc
+{
+    padding-top: 10px;
+}
+
+#ajax_access_fields
+{
+   padding-top: 15px;
+}
+
+/*** Access ***/
+#mysql_scripts_bloc
+{
+    background-color: white;
+}
+
+.access_item
+{
+    margin: 0;
+}
+
+.access_item_blocname
+{
+    padding-top: 15px;
+    padding-bottom: 10px;
+    background-color: white;
+}
+
+.access_item_blocname_img
+{
+   text-align: center;
+}
+
+.access_item_blocname_name
+{
+    font-weight: bold;
+    font-size: 1.1em;
+    position: relative;
+    top: 10px;
+    height: 100%;
+}
+
+.access_item_moderate
+{
+    position: relative;
+    top: 10px;
+    cursor: pointer;
+}
+
+.access_item_scripts
+{
+    padding-top: 18px;
+    padding-bottom: 18px;
+    background-color: #f5f8fa;
+}
+
+.mysql_script_close
+{
+    margin-bottom: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: white;
+    background: #636b6f;
+    opacity: 0.8;
+}
+
+.box_script
+{
+    display: none;
+}
+
+.create_script
+{
+    margin-left: 15px;
+}

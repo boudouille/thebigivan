@@ -6,9 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class AccessField extends Model
 {
-    //
-    public function accessValue()
+    public function accessType()
     {
-        return $this->belongsTo('App\AccessValue','id','access_field_id');
+        return $this->belongsTo('App\AccessType','id','access_type_id');
     }
 }

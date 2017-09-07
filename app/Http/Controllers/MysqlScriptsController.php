@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\CollaboratorAccess;
+use App\MysqlScripts;
 use Illuminate\Http\Request;
 
-class CollaboratorAccessController extends Controller
+class MysqlScriptsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class CollaboratorAccessController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\CollaboratorAccess  $collaboratorAccess
+     * @param  \App\MysqlScripts  $mysqlScripts
      * @return \Illuminate\Http\Response
      */
-    public function show(CollaboratorAccess $collaboratorAccess)
+    public function show(MysqlScripts $mysqlScripts)
     {
         //
     }
@@ -52,10 +52,10 @@ class CollaboratorAccessController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\CollaboratorAccess  $collaboratorAccess
+     * @param  \App\MysqlScripts  $mysqlScripts
      * @return \Illuminate\Http\Response
      */
-    public function edit(CollaboratorAccess $collaboratorAccess)
+    public function edit(MysqlScripts $mysqlScripts)
     {
         //
     }
@@ -64,10 +64,10 @@ class CollaboratorAccessController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CollaboratorAccess  $collaboratorAccess
+     * @param  \App\MysqlScripts  $mysqlScripts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CollaboratorAccess $collaboratorAccess)
+    public function update(Request $request, MysqlScripts $mysqlScripts)
     {
         //
     }
@@ -75,10 +75,10 @@ class CollaboratorAccessController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CollaboratorAccess  $collaboratorAccess
+     * @param  \App\MysqlScripts  $mysqlScripts
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CollaboratorAccess $collaboratorAccess)
+    public function destroy(MysqlScripts $mysqlScripts)
     {
         //
     }
