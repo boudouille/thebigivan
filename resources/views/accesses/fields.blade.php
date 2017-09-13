@@ -49,7 +49,7 @@
 
                 if( vertifInputRequired() )
                 {
-                    $('.form_access').submit();
+                    return true;
                 }
             }
 

@@ -25,37 +25,48 @@
 
 
                 <div class="col-lg-8 access_item_scripts">
-                    <div class="row" id="add_script_btn_{{$mysql->id}}">
-                        <button id="create_script_{{$mysql->id}}" class="btn btn-default create_script"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add a script</button>
-                    </div>
+                    <div  class="row">
+                        <div class="col-lg-2" id="add_script_btn_{{$mysql->id}}">
+                            <button id="create_script_{{$mysql->id}}" class="btn btn-default create_script"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add a script</button>
+                        </div>
 
-                    <div class="row box_script" id="box_script_{{$mysql->id}}">
-                        <div class="col-lg-6">
-                            <div class="row mysql_script_close">
-                                <div class="col-lg-10">Add a new script - {{$mysql->name}}</div>
-                                <div class="col-lg-2" style="text-align: right;">
-                                    <i class="fa fa-times box_script_close" aria-hidden="true" id="box_script_close_{{$mysql->id}}"></i>
+                        <div class="col-lg-10 box_script" id="box_script_{{$mysql->id}}">
+                            <div class="col-lg-6">
+                                <div class="row mysql_script_close">
+                                    <div class="col-lg-10">Add a new script - {{$mysql->name}}</div>
+                                    <div class="col-lg-2" style="text-align: right;">
+                                        <i class="fa fa-times box_script_close" aria-hidden="true" id="box_script_close_{{$mysql->id}}"></i>
+                                    </div>
                                 </div>
-                            </div>
-                            <form action="" method="post">
+                                {{ Form::open(array('url'=>'mysqlscripts','method'=>'post')) }}
                                 {{csrf_field()}}
+                                <input type="hidden" value="{{$mysql->id}}" name="mysql_access_id" />
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="script:name"/>
+                                    <input type="text" name="name" class="form-control" placeholder="script:name"/>
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" placeholder="script:script"></textarea>
+                                    <textarea class="form-control" name="script" placeholder="script:script"></textarea>
                                 </div>
 
                                 <button type="submit" class="btn btn-default"><i class="fa fa-plus-square"></i> Add</button>
-                            </form>
+                                {{ Form::close() }}
+                            </div>
+                        </div>
+                        <div class="col-lg-10" style="overflow-x: visible;">
+                            @foreach($mysql->mysqlScripts as $script)
+                                <button class="btn btn-success" onclick="window.location.href='{{route('mysqlscript_execute',$script->id)}}'">{{$script->name}}</button>
+                            @endforeach
                         </div>
                     </div>
+
                 </div>
+
             </div>
-        @endforeach
+</div>
+@endforeach
 
 
-    @endif
+@endif
 
 </div>
 

@@ -9,8 +9,8 @@ class MysqlScripts extends Model
     //
     protected $fillable = ['name','mysql_access_id','script'];
 
-    public function mysql_acess()
+    public function mysql_access()
     {
-        return $this->belongsTo('App\Mysql','id','mysql_access_id');
+        return $this->belongsTo('App\Mysql','mysql_access_id','id');
     }
 }

@@ -27,10 +27,16 @@ Route::resource('sites','SiteController');
 
 Route::post('ajaxSelectFields','AccessFieldController@show')->name('ajaxSelectFields');
 
-
 //Different access types test connection
 Route::post('mysql_test','MysqlController@testConnection')->name('mysql_test');
 
 
 //Different type of connection
 Route::resource('mysql','MysqlController');
+
+//Different type of scripts
+Route::resource('mysqlscripts','MysqlScriptsController');
+
+Route::get('mysqlscript_execute/{id}','MysqlScriptsController@execute')->name('mysqlscript_execute');
+
+

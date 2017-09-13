@@ -17,6 +17,6 @@ class Mysql extends Model
 
     public function mysqlScripts()
     {
-        return $this->hasMany('App\MysqlScripts','mysql_access_id','id');
+        return $this->hasMany('App\MysqlScripts','mysql_access_id','id')->orderBy('created_at','asc');
     }
 }
